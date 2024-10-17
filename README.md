@@ -18,6 +18,7 @@
     - Jest
 
 - **Foi selecionado essas tecnologias para agilizar a conclusão do desafio**
+- **Essas não serão todas tecnologias utilizadas, mas acredito que sejam as mais importantes**
 
 - [ ] Componentização
     - Estimado 3 horas
