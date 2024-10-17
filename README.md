@@ -8,14 +8,14 @@
 - Prioridade (Alta, Média, Baixa)
 
 ## Tecnologias selecionadas
-- NextJS
-- Tailwindcss
-- ShadcnUI
-- Zod
-- React Hook Form
-- Dayjs
-- Typescript
-- Jest
+    - NextJS
+    - Tailwindcss
+    - ShadcnUI
+    - Zod
+    - React Hook Form
+    - Dayjs
+    - Typescript
+    - Jest
 
 - **Foi selecionado essas tecnologias para agilizar a conclusão do desafio**
 
