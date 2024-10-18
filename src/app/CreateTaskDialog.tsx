@@ -10,19 +10,21 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { useModal } from "@/contexts/modal";
 import { CirclePlus } from "lucide-react";
 import { CreateTaskForm } from "./CreateTaskForm";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export function CreateTaskDialog() {
-    const { isOpen, setIsOpen } = useModal();
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 <Button>
                     <CirclePlus className="text-indigo-50" size={20} />
-                    <Span className="text-indigo-50">Criar</Span>
+                    <Span className="text-indigo-50 hidden md:inline">
+                        Criar
+                    </Span>
                 </Button>
             </DialogTrigger>
             <DialogContent>
@@ -37,7 +39,7 @@ export function CreateTaskDialog() {
                         </Span>
                     </DialogDescription>
                 </DialogHeader>
-                <CreateTaskForm />
+                <CreateTaskForm setIsOpen={setIsOpen} />
             </DialogContent>
         </Dialog>
     );
