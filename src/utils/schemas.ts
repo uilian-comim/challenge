@@ -17,6 +17,9 @@ const schemas = {
     filter: z.object({
         nameOrDescription: z.string().optional(),
         priority: z.enum(["low", "medium", "high", ""]).optional(),
+        orderBy: z
+            .enum(["name", "description", "priority", "created_at"])
+            .optional(),
     }),
 };
 
