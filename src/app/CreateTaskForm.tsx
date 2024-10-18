@@ -4,16 +4,20 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/Input";
 import { RadioGroup } from "@/components/RadioGroup";
 import { Span } from "@/components/Span";
-import { useModal } from "@/contexts/modal";
 import { CreateTask } from "@/interfaces/task";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { FormTextarea } from "@/components/Textarea";
 import utils from "@/utils";
+import { useTasks } from "@/contexts/tasks.context";
 
-export function CreateTaskForm() {
-    const { setIsOpen } = useModal();
+interface CreateTaskFormProps {
+    setIsOpen: (value: boolean) => void;
+}
+
+export function CreateTaskForm({ setIsOpen }: CreateTaskFormProps) {
+    const { refetch } = useTasks();
     const {
         handleSubmit,
         control,
@@ -29,6 +33,7 @@ export function CreateTaskForm() {
 
     async function onSubmit(data: CreateTask) {
         utils.LS.setItem("tasks", JSON.stringify(data));
+        refetch();
         setIsOpen(false);
     }
 
@@ -63,6 +68,7 @@ export function CreateTaskForm() {
                 defaultValue="low"
                 name="priority"
                 title="Prioridade"
+                control={control}
                 items={[
                     { id: "high", value: "high", label: "Alta" },
                     { id: "medium", value: "medium", label: "Média" },
@@ -84,7 +90,7 @@ export function CreateTaskForm() {
                 <Button
                     className="flex-1"
                     size="lg"
-                    type="submit"
+                    type="button"
                     variant="destructive"
                     onClick={() => setIsOpen(false)}
                 >
