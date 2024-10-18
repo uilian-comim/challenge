@@ -1,6 +1,27 @@
 import { CreateTask, Task } from "@/interfaces/task";
 import utils from "@/utils";
 
+interface Query {
+    nameOrDescription?: string | null;
+    priority?: string | null;
+    orderBy?: string | null;
+    sort?: string | null;
+}
+
+function sortItems(
+    items: Task[],
+    orderBy: "name" | "description" | "priority" | "created_at",
+    sort: "asc" | "desc"
+) {
+    return items.sort((a: Task, b: Task) => {
+        if (sort === "asc") {
+            return a[orderBy] > b[orderBy] ? 1 : -1;
+        } else {
+            return a[orderBy] < b[orderBy] ? 1 : -1;
+        }
+    });
+}
+
 function setItem(key: string, value: string) {
     const formattedData = utils.format.toLS(JSON.parse(value));
     const existingData = localStorage.getItem(key);
@@ -15,11 +36,7 @@ function setItem(key: string, value: string) {
     localStorage.setItem(key, JSON.stringify([formattedData]));
 }
 
-function getItem(
-    key: string,
-    query?: { nameOrDescription?: string | null; priority?: string | null },
-    page: number = 1
-) {
+function getItem(key: string, query?: Query, page: number = 1) {
     const value = localStorage.getItem(key);
     if (value && value.length > 0) {
         const filteredData = JSON.parse(value).filter((item: Task) => {
@@ -54,6 +71,22 @@ function getItem(
             return true;
         });
 
+        if (query && query.orderBy && query.sort) {
+            const sortedData = sortItems(
+                filteredData,
+                query.orderBy as
+                    | "name"
+                    | "description"
+                    | "priority"
+                    | "created_at",
+                query.sort as "asc" | "desc"
+            ).slice((page - 1) * 10, page * 10);
+
+            return {
+                data: sortedData,
+                total: filteredData.length,
+            };
+        }
         const parsedData = filteredData
             .sort(
                 (a: Task, b: Task) =>
