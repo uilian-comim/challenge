@@ -1,9 +1,9 @@
 import { Main } from "@/components/Main";
 import { ToggleTheme } from "@/components/ToggleTheme";
-import { CreateTaskDialog } from "./CreateTaskDialog";
-import { RenderTasks } from "./RenderTask";
-import { SearchTaskFilter } from "./SearchTaskFilter";
-import { FilterTaskDialog } from "./FilterTaskDialog";
+import { CreateTaskDialog } from "./components/CreateTaskDialog";
+import { RenderTasks } from "./components/RenderTask";
+import { SearchTaskFilter } from "./components/SearchTaskFilter";
+import { FilterTaskDialog } from "./components/FilterTaskDialog";
 
 export default function Home() {
     return (
