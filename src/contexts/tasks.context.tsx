@@ -29,9 +29,13 @@ export function TasksProvider({ children }: Children) {
     const fetchTasks = useCallback(() => {
         const textQuery = searchParams.get("nameOrDescription");
         const priorityQuery = searchParams.get("priority");
+        const sort = searchParams.get("sort");
+        const orderBy = searchParams.get("orderBy");
         const query = {
             nameOrDescription: textQuery,
             priority: priorityQuery,
+            orderBy: orderBy,
+            sort: sort,
         };
         const page = Number(searchParams.get("page") || 1);
         const response = utils.LS.getItem("tasks", query, page);
