@@ -20,19 +20,19 @@
 - **Foi selecionado essas tecnologias para agilizar a conclusão do desafio**
 - **Essas não serão todas tecnologias utilizadas, mas acredito que sejam as mais importantes**
 
-- [ ] Componentização
+- [X] Componentização
     - Estimado 3 horas
 
-- [ ] Tema Dark e Light
+- [X] Tema Dark e Light
     - Estimado 1 hora
 
 - [ ] Testes unitários
     - Estimado 6 horas
 
-- [ ] Construção da página
+- [X] Construção da página
     - Estimado 2 horas
 
-- [ ] Funcionalidades e validações
+- [X] Funcionalidades e validações
     - Criar tarefa
         - Estimado 2 horas
     - Listar tarefas
@@ -42,7 +42,7 @@
     - Excluir tarefa
         - Estimado 1 hora
 
-- [ ] Filtros e ordenação
+- [X] Filtros e ordenação
     - [ ] Filtros
         - Nome e Descrição
         - Prioridade
@@ -55,5 +55,5 @@
         - Data de criação ASC e DESC
     - Estimado 2 horas
 
-- [ ] Páginação
+- [X] Páginação
     - Estimado 2 horas
