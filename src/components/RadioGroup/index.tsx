@@ -5,11 +5,13 @@ import {
     RadioGroupItem,
     RadioGroup as ShadcnRadioGroup,
 } from "../ui/radio-group";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-interface RadioGroupProps {
+interface RadioGroupProps<T extends FieldValues> {
     title: string;
-    name: string;
-    defaultValue: string;
+    name: Path<T>;
+    defaultValue?: string;
+    control: Control<T>;
     items: Array<{
         id: string;
         value: string;
@@ -17,12 +19,13 @@ interface RadioGroupProps {
     }>;
 }
 
-export function RadioGroup({
+export function RadioGroup<T extends FieldValues>({
     defaultValue,
     name,
     title,
+    control,
     items,
-}: RadioGroupProps) {
+}: RadioGroupProps<T>) {
     const renderItems = useCallback(() => {
         return items.map((item) => {
             return (
@@ -42,13 +45,20 @@ export function RadioGroup({
     return (
         <div className="flex flex-col items-start justify-center gap-2">
             <Span>{title}</Span>
-            <ShadcnRadioGroup
-                className="w-full flex items-center justify-center gap-2"
+            <Controller
                 name={name}
-                defaultValue={defaultValue}
-            >
-                {renderItems()}
-            </ShadcnRadioGroup>
+                control={control}
+                render={({ field }) => (
+                    <ShadcnRadioGroup
+                        className="w-full flex items-center justify-center gap-2"
+                        name={name}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value || defaultValue}
+                    >
+                        {renderItems()}
+                    </ShadcnRadioGroup>
+                )}
+            />
         </div>
     );
 }
