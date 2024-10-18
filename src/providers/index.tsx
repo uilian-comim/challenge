@@ -1,6 +1,6 @@
-import { ModalProvider } from "@/contexts/modal";
+import { TasksProvider } from "@/contexts/tasks.context";
 import { Children } from "@/interfaces/children";
 
 export default function Providers({ children }: Children) {
-    return <ModalProvider>{children}</ModalProvider>;
+    return <TasksProvider>{children}</TasksProvider>;
 }
