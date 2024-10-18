@@ -1,6 +1,6 @@
 import { CreateTask, Task } from "@/interfaces/task";
+import dayjs from "dayjs";
 import { v4 } from "uuid";
-import { Dayjs } from "dayjs";
 
 function toLS(value: CreateTask): Task {
     return {
@@ -10,14 +10,14 @@ function toLS(value: CreateTask): Task {
     };
 }
 
-function toString(date: Date) {
-    const formattedDate = new Dayjs(date).format("DD/MM/YYYY");
+function FromDatetoString(date: Date) {
+    const formattedDate = dayjs(date).format("DD/MM/YYYY");
     return formattedDate;
 }
 
 const format = {
     toLS,
-    toString,
+    FromDatetoString,
 };
 
 export default format;
